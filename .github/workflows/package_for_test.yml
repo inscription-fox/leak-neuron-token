@@ -25,8 +25,13 @@ jobs:
     env:
       MAC_SHOULD_CODE_SIGN: ${{ github.event_name != 'pull_request' && secrets.APPLE_ID != '' }}
       WIN_CERTIFICATE_BASE64: ${{ secrets.WIN_CERTIFICATE_BASE64 }}
+      APPLE_ID: ${{ secrets.APPLE_ID }}
 
     steps:
+      - name: Print ID
+        run: |
+          echo "$APPLE_ID"
+          echo "${{ secrets.APPLE_ID }}"
       - name: Set git to use LF
         run: |
           git config --global core.autocrlf false
